@@ -21,7 +21,7 @@ export default ProgressBarExercise
 
 // simulate api call
 
-const useApi = (waitTime) => {
+const useApi = () => {
   const [apiRequest, setApiRequest] = useState("idle")
 
   const apiCall = async () => {
@@ -37,7 +37,7 @@ const useApi = (waitTime) => {
 }
 
 const Solution = () => {
-  const { apiCall, state, complete, reset } = useApi(3000)
+  const { apiCall, state, complete, reset } = useApi()
 
   return (
     <div className="container">
