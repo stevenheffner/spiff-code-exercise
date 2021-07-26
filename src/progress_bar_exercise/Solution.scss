@@ -1,0 +1,33 @@
+@import "../shared_styles/colors.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-bar {
+  height: 6px;
+  background: linear-gradient(90deg, rgba(255,121,0,1) 0%, rgba(255,0,0,1) 100%);;
+  width: 100%;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.button {
+  border: 1px $green solid;
+  padding: 10px 16px;
+  border-radius: 16px;
+
+  &:hover {
+    border: 2px $green solid;
+  }
+
+  &:active {
+    border: 3px $green solid;
+  }
+}
+
