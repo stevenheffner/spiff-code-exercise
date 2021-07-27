@@ -22,17 +22,13 @@ export default ProgressBarExercise
 // simulate api call
 
 const useApi = () => {
-  const [apiRequest, setApiRequest] = useState("idle")
-
-  const apiCall = async () => {
-    setApiRequest("loading")
-  }
+  const [state, setState] = useState("idle")
 
   return {
-    apiCall,
-    state: apiRequest,
-    complete: () => setApiRequest("complete"),
-    reset: () => setApiRequest("idle"),
+    state,
+    apiCall: () => setState("loading"),
+    complete: () => setState("complete"),
+    reset: () => setState("idle"),
   }
 }
 
