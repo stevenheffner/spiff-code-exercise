@@ -1,5 +1,7 @@
-import React from "react";
-import Exercise from "../exercise/Exercise";
+import React, { useState } from "react"
+import Exercise from "../exercise/Exercise"
+import "./Solution.scss"
+import "../shared_styles/typography.scss"
 
 const ProgressBarExercise = () => {
   return (
@@ -10,13 +12,58 @@ const ProgressBarExercise = () => {
         title="Progress Bar Exercise"
       />
     </div>
-  );
-};
+  )
+}
 
-export default ProgressBarExercise;
+export default ProgressBarExercise
 
 // ----------------------------------------------------------------------------------
 
+// simulate api call
+
+const useApi = () => {
+  const [apiRequest, setApiRequest] = useState("idle")
+
+  const apiCall = async () => {
+    setApiRequest("loading")
+  }
+
+  return {
+    apiCall,
+    state: apiRequest,
+    complete: () => setApiRequest("complete"),
+    reset: () => setApiRequest("idle"),
+  }
+}
+
 const Solution = () => {
-  return <div>Add solution here</div>;
-};
+  const { apiCall, state, complete, reset } = useApi()
+
+  return (
+    <div className="container">
+      <div className={`progress-bar progress-bar-${state}`} />
+      <div className="buttons-container">
+        {state === "idle" || state === "loading" ? (
+          <button
+            disabled={state !== "idle"}
+            onClick={() => apiCall()}
+            className="small-header green button"
+          >
+            {state === "loading" ? "loading..." : "start request"}
+          </button>
+        ) : (
+          <button onClick={() => reset()} className="small-header green button">
+            reset
+          </button>
+        )}
+        <button
+          disabled={state !== 'loading'}
+          onClick={() => complete()}
+          className="small-header button red finish-button"
+        >
+          finish request
+        </button>
+      </div>
+    </div>
+  )
+}
